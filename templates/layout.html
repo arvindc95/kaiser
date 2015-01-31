@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gareau Kaiser</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	</head>
+
+	<body class="home-body">	
+		<header>
+			<div id="main_header">
+				<a href="/"><img src="{{ url_for('static', filename='img/kaiser_logo.png') }}" alt="Kaiser Logo" height="42" width="42" id="logo"></a>
+				<ul>
+				{% if g.user.is_authenticated() %}
+					<li><a href="{{ url_for('logout') }}">Logout</a></li>
+					<li><a href="{{ url_for('game') }}">Play Game</a></li>
+				{% else %}
+					<li><a href="{{ url_for('login') }}">Log In</a></li>
+					<li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+				{% endif %}
+				</ul>
+			</div>
+		</header>
+
+		{% block content %}
+		{% endblock %}
+		
+	</body>
+
+</html>

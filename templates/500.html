@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h1>Internal Server Error</h1>
+	<p>Someone has been notified.</p>
+	<a href="{{ url_for('index') }}"><img src="{{ url_for('static'), filename='img/error.png' }}" alt="500 Error" id="baby" width=400 height=558 ></a>
+{% endblock %}

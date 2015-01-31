@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+
+{% block content %}
+	<form action="" method="post" class="dark-form">
+		<h1 class="line">Sign Up</h1>
+		{{ form.hidden_tag() }}
+		<label>
+			{% for error in form.username.errors %}
+				<p id="error">{{ error }}</p>
+			{% endfor %}
+			{% for error in form.password.errors %}
+				<p id="error">{{ error }}</p>
+			{% endfor %}
+			<span>Username:</span>
+			{{ form.username(size=20) }}<br>
+			<span>Password:</span>
+			{{ form.password(size=40) }}<br>
+			<span>Confirm password:</span>
+			{{ form.cpassword(size=40) }}<br>
+		</label>
+		<p>{{ form.remember_me }}Remember Me</p>
+		<p><input type="submit" value="Sign Up"></p>
+	</form>
+{% endblock %}

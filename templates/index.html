@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+	{% if title %}
+	<title>{{ title }} - Kaiser</title>
+	{% else %}
+	<title>Kaiser</title>
+	{% endif %}
+</head>
+<body>
+	<div class="boxed">
+		{% if user.name %}
+			<h1>Hi {{ user.name }}!</h1>
+		{% else %}
+			<h1>Welcome!</h1>
+		{% endif %}
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<p style="color: #FFFFFF;">{{ message }}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		<p>Kaiser is a trick-taking game played with two teams of two players. The game is played with 32 cards - 7 to Ace in every suit except hearts and spades, where the 7's are replaced with the 5 of Hearts and the 3 of Spades, respectively.</p>
+		<p>Bidding starts clockwise from the dealer. Players bid based on how many points they can make, knowing that the 5 is worth 5 points, the 3 is worth -3 points, and that every trick is worth 1 point. The minimum bid is 7. Bidding no trump can get you double points - or lose them.</p>
+	</div>
+</body>
+{% endblock %}

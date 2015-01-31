@@ -1,0 +1,6 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h1>File Not Found</h1>
+	<a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/error.png') }}" alt='404 Error' id="baby" width=400 height=558 ></a>
+{% endblock %}
