@@ -1,4 +1,4 @@
-from app import db, bc
+from kaiserapp import db, bc
 from models import User
 
 def try_login(user, password):

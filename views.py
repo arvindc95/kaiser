@@ -1,9 +1,10 @@
 from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from app import app, db, lm, bc
+from kaiserapp import app, db, lm, bc
 from forms import LoginForm, SignupForm
 from models import User
 from db_interact import try_login
+import testing
 
 @lm.user_loader
 def load_user(id):
@@ -62,7 +63,8 @@ def signup():
 @login_required
 def game():
 	return render_template('game.html',
-							title="Kaiser")
+							title="Kaiser",
+							hand=testing.make_hand())
 
 @app.route('/logout')
 @login_required

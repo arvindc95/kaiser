@@ -1,4 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Nothing here right now...</h1>
+<div class="game">
+	<h1>Testing</h1>
+	{% for card in hand %}
+		<div class="{{ card.html_class }} spread">
+			<p>{{ card.val }}</p>
+		</div>
+	{% endfor %}
+</div>
 {% endblock %}
