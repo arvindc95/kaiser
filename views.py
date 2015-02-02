@@ -1,6 +1,7 @@
 from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from kaiserapp import app, db, lm, bc
+from flask.ext.socketio import SocketIO, emit
+from kaiserapp import app, db, lm, bc, game
 from forms import LoginForm, SignupForm
 from models import User
 from db_interact import try_login
@@ -64,7 +65,8 @@ def signup():
 def game():
 	return render_template('game.html',
 							title="Kaiser",
-							hand=testing.make_hand())
+							hand = testing.test_hand(),
+							num_cards = 8)
 
 @app.route('/logout')
 @login_required
@@ -82,8 +84,18 @@ def internal_error(error):
 	return render_template('500.html'), 500
 
 def ulogin(user):
-     if 'remember_me' in session:
-         remember_me = session['remember_me']
-         session.pop('remember_me', None)
-     login_user(user, remember = remember_me)
+	if 'remember_me' in session:
+		remember_me = session['remember_me']
+		session.pop('remember_me', None)
+	login_user(user, remember = remember_me)
+	session['userid'] = current_user.get_id()
+	join_room(session['userid'])
+
+#################################### SOCKETS ##################################
+
+@socketio.on('play_card')
+def play_card(data):
+	if not data['playerid'] in game.games[data['gameid']].players:
+		emit('bad_turn', room=session['userid'])
+
 

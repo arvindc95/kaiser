@@ -2,10 +2,12 @@
 {% block content %}
 <div class="game">
 	<h1>Testing</h1>
-	{% for card in hand %}
-		<div class="{{ card.html_class }} spread">
-			<p>{{ card.val }}</p>
-		</div>
-	{% endfor %}
+	<ul class="card{{ num_cards }}">
+		{% for card in hand.cards %}
+			<li>
+				<img src="{{ url_for('static', filename=card.html_img) }}" height="108" width="75" alt="Playing Card"/>
+			</li>
+		{% endfor %}
+	</ul>
 </div>
 {% endblock %}

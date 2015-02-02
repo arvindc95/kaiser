@@ -4,7 +4,7 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flask.ext.bcrypt import Bcrypt
-
+from gameengine.py import KaiserServer
 from config import basedir
 
 app = Flask(__name__)
@@ -14,5 +14,6 @@ db = SQLAlchemy(app)
 lm = LoginManager()
 lm.init_app(app)
 lm.login_view = 'login'
+game = KaiserServer()
 
 from kaiserapp import views, models
